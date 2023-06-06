@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Welcom</title>
+        <title>Welcome</title>
 
         <link rel="stylesheet" type="text/css" href="/css/maine.css" />
     </head>
