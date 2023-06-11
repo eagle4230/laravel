@@ -12,7 +12,7 @@
 
 <body>
   <header>
-    <h1><?= $titleCategory ?></h1>
+    <h1>{{ $titleCategory }}</h1>
   </header>
   <hr /><br>
   <div style="border: 1px solid green; 
@@ -20,16 +20,16 @@
                 color: blue;
                 margin: 0 auto;
                 width: 50%;">
-    <h2> <?= $news['title'] ?> </h2>
+    <h2> {{ $news['title'] }} </h2>
     <p style="font-style: italic; 
                 color: grey;
                 font-size: 20px;
                 ">
-      <?= $news['description'] ?>
+      {{ $news['description'] }}
     </p>
     <p style="text-align: right;
                 font-size: 15px;">
-      <?= $news['author'] ?> (<?= $news['created_at']->format('d-m-Y H:i') ?>)
+      {{ $news['author'] }} ({{ $news['created_at']->format('d-m-Y H:i') }})
     </p>
   </div><br>
   <hr />

@@ -15,16 +15,16 @@
     <h1>Агрегатор новостей</h1>
   </header>
   <hr /><br>
-  <?php foreach ($categoriesList as $key => $categories) : ?>
-    <div style="border: 1px solid green; 
+  @foreach ($categoriesList as $key => $categories)
+  <div style="border: 1px solid green; 
                 text-align: center;
                 color: green;
                 margin: 0 auto;
                 width: 50%;">
-      <h2><a href=categories/<?= $key ?>><?= $categories ?></a></h2>
-    </div>
-    <br>
-  <?php endforeach; ?>
+    <h2><a href=categories/{{ $key }}>{{ $categories }}</a></h2>
+  </div>
+  <br>
+  @endforeach
   <hr />
   <footer>С уважением, первоисточники.</footer>
 </body>
