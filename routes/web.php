@@ -33,7 +33,7 @@ Route::get('/categories/{category}/{id}', [NewsController::class, 'show'])
   ->where('id', '\d+');
 
 //Admin --group routes
-Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], static function () {
   Route::resource('categories', AdminCategoryNewsController::class);
   Route::resource('news', AdminNewsController::class);
 });
