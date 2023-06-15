@@ -29,7 +29,8 @@ class CategoryNewsController extends Controller
    */
   public function store(Request $request)
   {
-    dd($request->all());
+    //dd($request->all());
+    return response()->json($request->input(['category']));
   }
 
   /**

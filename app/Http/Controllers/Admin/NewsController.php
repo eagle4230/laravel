@@ -29,7 +29,13 @@ class NewsController extends Controller
    */
   public function store(Request $request)
   {
-    dd($request->all());
+    //dd($request->all());
+    return response()->json($request->only([
+      'title',
+      'author',
+      'status',
+      'description'
+    ]));
   }
 
   /**
