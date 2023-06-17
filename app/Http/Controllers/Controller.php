@@ -38,7 +38,7 @@ class Controller extends BaseController
       ];
     }
 
-    for ($i = 0; $i < 5; $i++) {
+    for ($i = 1; $i < 6; $i++) {
       $news[$i] = [
         'id' => $i,
         'category' => $category,
