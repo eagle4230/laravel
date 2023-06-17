@@ -1,9 +1,9 @@
 @extends('layouts.main')
 @section('content')
 
-<h1>{{ $titleCategory }}</h1>
-
 <div class="container">
+
+  <h1>{{ $titleCategory }}</h1>
 
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
@@ -35,7 +35,7 @@
                 class="btn btn-sm btn-outline-secondary">Подробнее</a>
             </div>
             <small class="text-muted">
-              {{ $news['author'] }} ({{ $news['created_at']->format('d-m-Y H:i') }}
+              {{ $news['author'] }} </br> {{ $news['created_at']->format('d-m-Y H:i') }}
             </small>
           </div>
         </div>
