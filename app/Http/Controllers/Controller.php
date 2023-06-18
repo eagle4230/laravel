@@ -23,7 +23,7 @@ class Controller extends BaseController
     return $categories;
   }
 
-  public function getNews(string $category, int $id = null): array
+  /*public function getNews(string $category, int $id = null): array
   {
     $news = [];
 
@@ -50,5 +50,5 @@ class Controller extends BaseController
       ];
     }
     return $news;
-  }
+  }*/
 }

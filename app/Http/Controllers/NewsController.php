@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\News;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
@@ -10,11 +11,15 @@ final class NewsController extends Controller
 
   public function index(string $category): View
   {
+    $model = app(News::class);
+
     $nameCategory = $this->getCategories();
-    $news = $this->getNews($category);
+
+    $news = $model->getNews($category);
+
     return view('news.index', [
       'newsList' => $news,
-      'titleCategory' => $nameCategory[$category]
+      //'titleCategory' => $nameCategory[$category]
     ]);
   }
 
@@ -24,7 +29,7 @@ final class NewsController extends Controller
     $news = $this->getNews($category, $id);
     return view('news.show', [
       'news' => $news,
-      'titleCategory' => $nameCategory[$category]
+      //'titleCategory' => $nameCategory[$category]
     ]);
   }
 }
