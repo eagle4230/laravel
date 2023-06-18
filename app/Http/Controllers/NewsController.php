@@ -15,21 +15,25 @@ final class NewsController extends Controller
 
     $nameCategory = $this->getCategories();
 
-    $news = $model->getNews($category);
+    $news = $model->getNews();
 
     return view('news.index', [
       'newsList' => $news,
-      //'titleCategory' => $nameCategory[$category]
+      'titleCategory' => $nameCategory[$category],
+      'urlCategory' => $category,
     ]);
   }
 
   public function show(string $category, int $id): View
   {
     $nameCategory = $this->getCategories();
-    $news = $this->getNews($category, $id);
+
+    $model = app(News::class);
+    //dd($model->getNewsById($id));
     return view('news.show', [
-      'news' => $news,
-      //'titleCategory' => $nameCategory[$category]
+      'news' => $model->getNewsById($id),
+      'titleCategory' => $nameCategory[$category],
+      'urlCategory' => $category,
     ]);
   }
 }

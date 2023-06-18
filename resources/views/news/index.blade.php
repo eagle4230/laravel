@@ -3,7 +3,7 @@
 
 <div class="container">
 
-
+  <h2>{{ $titleCategory }}</h2>
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
     @foreach ($newsList as $news)
@@ -14,7 +14,7 @@
         <div class="card-body">
           <p>
             <strong>
-              <a href="{{ $news->id }}">
+              <a href="{{ $urlCategory }}/{{ $news->id }}">
                 {{ $news->title }}
               </a>
             </strong>
@@ -24,7 +24,8 @@
           </p>
           <div class="d-flex justify-content-between align-items-center">
             <div class="btn-group">
-              <a href="{{ $news->id }}" type="button" class="btn btn-sm btn-outline-secondary">Подробнее</a>
+              <a href="{{ $urlCategory }}/{{ $news->id }}" type="button"
+                class="btn btn-sm btn-outline-secondary">Подробнее</a>
             </div>
             <small class="text-muted">
               {{ $news->author }} </br> {{ $news->created_at }}
