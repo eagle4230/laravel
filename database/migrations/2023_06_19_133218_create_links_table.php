@@ -13,7 +13,7 @@ return new class extends Migration
    */
   public function up(): void
   {
-    Schema::create('category_has_news', static function (Blueprint $table): void {
+    Schema::create('links', static function (Blueprint $table): void {
       $table->foreignId('category_id')
         ->references('id')
         ->on('categories')
@@ -23,6 +23,11 @@ return new class extends Migration
         ->references('id')
         ->on('news')
         ->cascadeOnDelete();
+
+      $table->foreignId('source_id')
+        ->references('id')
+        ->on('sources')
+        ->cascadeOnDelete();
     });
   }
 
@@ -31,6 +36,6 @@ return new class extends Migration
    */
   public function down(): void
   {
-    Schema::dropIfExists('category_has_news');
+    Schema::dropIfExists('links');
   }
 };
