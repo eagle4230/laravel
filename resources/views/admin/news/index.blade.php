@@ -10,4 +10,27 @@
     </div>
   </div>
 </div>
+
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <tr>
+      <th>#ID</th>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Status</th>
+      <th>Date created</th>
+      <th>Actions</th>
+    </tr>
+    @foreach ($newsList as $news)
+    <tr>
+      <td>{{ $news->id }}</td>
+      <td>{{ $news->title }}</td>
+      <td>{{ $news->author }}</td>
+      <td>{{ $news->status }}</td>
+      <td>{{ $news->created_at }}</td>
+      <td><a href="#">Edit</a>&nbsp; <a href="#" style="color:red">Delete</a></td>
+    </tr>
+    @endforeach
+  </table>
+</div>
 @endsection

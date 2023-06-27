@@ -22,33 +22,4 @@ class Controller extends BaseController
 
     return $categories;
   }
-
-  public function getNews(string $category, int $id = null): array
-  {
-    $news = [];
-
-    if ($id) {
-      return [
-        'id' => $id,
-        'title' => fake()->jobTitle(),
-        'author' => fake()->userName(),
-        'status' => 'draft',
-        'description' => fake()->text(100),
-        'created_at' => now(),
-      ];
-    }
-
-    for ($i = 1; $i < 6; $i++) {
-      $news[$i] = [
-        'id' => $i,
-        'category' => $category,
-        'title' => fake()->jobTitle(),
-        'author' => fake()->userName(),
-        'status' => 'draft',
-        'description' => fake()->text(100),
-        'created_at' => now('Europe/Moscow'),
-      ];
-    }
-    return $news;
-  }
 }
