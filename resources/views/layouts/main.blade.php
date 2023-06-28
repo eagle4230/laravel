@@ -6,6 +6,7 @@
   <title>News</title>
 
   <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
 
   <meta name="theme-color" content="#712cf9">
 
@@ -66,24 +67,22 @@
 </head>
 
 <body>
+  <div class="wrapper">
+    <div class="top bg-light">
+      <x-header></x-header>
 
-  <x-header></x-header>
+      <main class="content">
 
-  <main>
+        <div class="album py-5">
+          @yield('content')
+        </div>
 
-    <div class="album py-5 bg-light">
-      @yield('content')
+      </main>
     </div>
-
-  </main>
-
-  <x-footer></x-footer>
-
-
-
+    <x-footer></x-footer>
+  </div>
   <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}">
   </script>
-
 
 </body>
 

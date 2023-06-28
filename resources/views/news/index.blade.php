@@ -20,7 +20,9 @@
             </strong>
           </p>
           <p class="card-text">
-            {{ $news->description }}
+            @php
+            echo mb_substr($news->description, 0, 50) . " ...";
+            @endphp
           </p>
           <div class="d-flex justify-content-between align-items-center">
             <div class="btn-group">

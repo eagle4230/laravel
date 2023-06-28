@@ -1,0 +1,29 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.top {
+  flex-grow: 1;
+  height: 100%;
+}
+
+.header {
+  height: auto;
+}
+
+.footer {
+  padding: 10px 0 10px 0;
+  color: blanchedalmond;
+  text-decoration: none;
+}
+
+.icon {
+  margin: 5px;
+}
