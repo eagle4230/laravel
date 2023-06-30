@@ -2,8 +2,7 @@
 @section('content')
 
 <div class="container">
-
-  <h2>{{ $titleCategory }}</h2>
+  <h2>{{-- $titleCategory->title --}}</h2>
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
     @foreach ($newsList as $news)

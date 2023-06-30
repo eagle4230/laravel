@@ -4,9 +4,9 @@
 <div class="container">
   <h1>Категории новостей</h1>
   <hr /><br>
-  @foreach ($categoriesList as $key => $categories)
+  @foreach ($categoriesList as $categories)
   <div>
-    <h2><a href=categories/{{ $key }}>{{ $categories }}</a></h2>
+    <h2><a href=categories/{{ $categories->id }}>{{ $categories->title }}</a></h2>
   </div>
   <br>
   @endforeach
