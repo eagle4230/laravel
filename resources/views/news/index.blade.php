@@ -13,7 +13,7 @@
         <div class="card-body">
           <p>
             <strong>
-              <a href="{{ $urlCategory }}/{{ $news->id }}">
+              <a href="0/{{ $news->id }}">
                 {{ $news->title }}
               </a>
             </strong>
@@ -25,8 +25,7 @@
           </p>
           <div class="d-flex justify-content-between align-items-center">
             <div class="btn-group">
-              <a href="{{ $urlCategory }}/{{ $news->id }}" type="button"
-                class="btn btn-sm btn-outline-secondary">Подробнее</a>
+              <a href="0/{{ $news->id }}" type="button" class="btn btn-sm btn-outline-secondary">Подробнее</a>
             </div>
             <small class="text-muted">
               {{ $news->author }} </br> {{ date('d-m-Y H:i', strtotime($news->created_at)) }}

@@ -9,19 +9,19 @@ use Illuminate\Contracts\View\View;
 final class NewsController extends Controller
 {
 
-  // public function index(int $category): View
-  // {
-  //   $modelNews = app(News::class);
+  public function index(): View
+  {
+    $modelNews = app(News::class);
 
-  //   $news = $modelNews->getNews();
+    $news = $modelNews->getNews();
 
-  //   return view('news.index', [
-  //     'newsList' => $news,
-  //     'urlCategory' => $category,
-  //   ]);
-  // }
+    return view('news.index', [
+      'newsList' => $news,
+      //'urlCategory' => $category,
+    ]);
+  }
 
-  public function index(int $category): View
+  public function indexByCategory(int $category): View
   {
     $modelLink = app(Link::class)->getNumNewsByCategory($category);
     $numNews = $modelLink->pluck('news_id')->unique()->all();   //array

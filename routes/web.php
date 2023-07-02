@@ -26,11 +26,16 @@ Route::get('/', [WelcomePageController::class, 'welcome']);
 //News Categories --routes
 Route::get('/categories', [CategoriesNewsController::class, 'list']);
 
+//All News --routes
+Route::get('/categories/all', [NewsController::class, 'index']);
+
 //News by category --routes
-Route::get('/categories/{category}', [NewsController::class, 'index']);
+Route::get('/categories/{category}', [NewsController::class, 'indexByCategory'])
+  ->where('category', '\d+');
 
 //News --routes
 Route::get('/categories/{category}/{id}', [NewsController::class, 'show'])
+  ->where('category', '\d+')
   ->where('id', '\d+');
 
 //Admin --group routes
