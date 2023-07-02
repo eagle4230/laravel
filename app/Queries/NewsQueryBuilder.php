@@ -6,11 +6,17 @@ namespace App\Queries;
 
 use App\Models\News;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 
 class NewsQueryBuilder extends QueryBuilder
 {
   public function getModel(): Builder
   {
     return News::query();
+  }
+
+  public function getAllNews(): Collection
+  {
+    return $this->getModel()->get();
   }
 }
