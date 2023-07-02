@@ -15,7 +15,7 @@ class NewsQueryBuilder extends QueryBuilder
     return News::query();
   }
 
-  public function getAllNews(): Collection
+  public function getAll(): Collection
   {
     return $this->getModel()->get();
   }

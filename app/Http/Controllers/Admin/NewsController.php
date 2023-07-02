@@ -15,7 +15,7 @@ class NewsController extends Controller
    */
   public function index(NewsQueryBuilder $newsQueryBuilder): View
   {
-    return view('admin.news.index', ['newsList' => $newsQueryBuilder->getAllNews()]);
+    return view('admin.news.index', ['newsList' => $newsQueryBuilder->getAll()]);
   }
 
   /**

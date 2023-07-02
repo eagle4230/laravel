@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Queries\CategoriesQueryBuilder;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
@@ -12,9 +13,11 @@ class CategoryNewsController extends Controller
   /**
    * Display a listing of the resource.
    */
-  public function index(): View
+  public function index(CategoriesQueryBuilder $categoriesQueryBuilder): View
   {
-    return view('admin.categories.index', ['categoriesList' => Category::all()]);
+    return view('admin.categories.index', [
+      'categoriesList' => $categoriesQueryBuilder->getAll()
+    ]);
   }
 
   /**
