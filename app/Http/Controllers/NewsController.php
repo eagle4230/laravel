@@ -2,34 +2,58 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\News;
+use App\Models\Link;
 use Illuminate\Contracts\View\View;
 
 final class NewsController extends Controller
 {
 
+  // public function index(int $category): View
+  // {
+  //   $modelNews = app(News::class);
+
+  //   $news = $modelNews->getNews();
+
+  //   return view('news.index', [
+  //     'newsList' => $news,
+  //     'urlCategory' => $category,
+  //   ]);
+  // }
+
   public function index(int $category): View
   {
-    $modelNews = app(News::class);
-    $modelCategories = app(Category::class);
+    $modelLink = app(Link::class)->getNumNewsByCategory($category);
+    $numNews = $modelLink->pluck('news_id')->unique()->all();   //array
+    //$numNews = $modelLink->pluck('news_id')->unique();    //Collection
+    //dd($numNews);
 
-    $news = $modelNews->getNews();
-    $categories = $modelCategories->getCategories();
+    $newsByCategory = app(News::class)->whereIn('id', $numNews)->get();
 
-    return view('news.index', [
-      'newsList' => $news,
+    //dd($newsByCategory);
+
+
+    return view('news.indexByCategory', [
+      'newsByCategory' => $newsByCategory,
       'urlCategory' => $category,
-      'titleCategory' => $categories,
     ]);
   }
+
+
+
 
   public function show(string $category, int $id): View
   {
     $model = app(News::class);
 
+    $news = $model->getNewsById($id);
+
+    if (!$news) {
+      return abort(404);
+    }
+
     return view('news.show', [
-      'news' => $model->getNewsById($id),
+      'news' => $news,
       'urlCategory' => $category,
     ]);
   }
