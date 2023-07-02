@@ -14,10 +14,7 @@ class NewsController extends Controller
    */
   public function index(): View
   {
-    $model = app(News::class);
-    return view('admin.news.index', [
-      'newsList' => $model->getNews(),
-    ]);
+    return view('admin.news.index', ['newsList' => News::all()]);
   }
 
   /**

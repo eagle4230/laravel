@@ -14,9 +14,4 @@ class Category extends Model
   use HasFactory;
 
   protected $table = 'categories';
-
-  public function getCategories(): Collection
-  {
-    return DB::table($this->table)->get();
-  }
 }

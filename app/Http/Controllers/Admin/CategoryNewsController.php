@@ -14,10 +14,7 @@ class CategoryNewsController extends Controller
    */
   public function index(): View
   {
-    $model = app(Category::class);
-    return view('admin.categories.index', [
-      'categoriesList' => $model->getCategories(),
-    ]);
+    return view('admin.categories.index', ['categoriesList' => Category::all()]);
   }
 
   /**

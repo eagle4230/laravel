@@ -6,8 +6,12 @@
 <form method="post" action="{{ route('admin.categories.store') }}">
   @csrf
   <div class="form-group">
-    <label for="category">Категория</label>
-    <input type="text" name="category" id="category" class="form-control">
+    <label for="title">Категория</label>
+    <input type="text" name="title" id="title" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="description">Описание</label>
+    <input type="text" name="description" id="descriptions" class="form-control">
   </div>
   <br>
   <button type="submit" class="btn btn-success">Сохранить</button>
