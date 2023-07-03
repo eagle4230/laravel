@@ -6,16 +6,32 @@ use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use App\Models\News;
+use App\Queries\CategoriesQueryBuilder;
 use App\Queries\NewsQueryBuilder;
+use App\Queries\QueryBuilder;
 
 class NewsController extends Controller
 {
+  protected QueryBuilder $categoriesQueryBuilder;
+  protected QueryBuilder $newsQueryBuilder;
+
+  public function __construct(
+    CategoriesQueryBuilder $categoriesQueryBuilder,
+    NewsQueryBuilder $newsQueryBuilder
+  ) {
+    $this->categoriesQueryBuilder = $categoriesQueryBuilder;
+    $this->newsQueryBuilder = $newsQueryBuilder;
+  }
+
+
   /**
    * Display a listing of the resource.
    */
-  public function index(NewsQueryBuilder $newsQueryBuilder): View
+  public function index(): View
   {
-    return view('admin.news.index', ['newsList' => $newsQueryBuilder->getAll()]);
+    return view('admin.news.index', [
+      'newsList' => $this->newsQueryBuilder->getAll()
+    ]);
   }
 
   /**
@@ -23,7 +39,9 @@ class NewsController extends Controller
    */
   public function create(): View
   {
-    return view('admin.news.create');
+    return view('admin.news.create', [
+      'categories' => $this->categoriesQueryBuilder->getAll(),
+    ]);
   }
 
   /**
