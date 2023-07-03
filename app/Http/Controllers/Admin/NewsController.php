@@ -50,12 +50,28 @@ class NewsController extends Controller
   public function store(Request $request)
   {
     //dd($request->all());
-    return response()->json($request->only([
+
+    $categories = $request->input('categories');
+
+    $news = $request->only([
       'title',
       'author',
       'status',
       'description'
-    ]));
+    ]);
+
+    $news = News::create($news);
+    //dd($news);
+
+    if ($news !== false) {
+      if ($categories !== null) {
+        $news->categories()->attach($categories);
+
+        return redirect()->route('admin.news.index')->with('success', 'News has been create');
+      }
+    }
+
+    return back()->with('error', 'News has not been create');
   }
 
   /**

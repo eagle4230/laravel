@@ -8,7 +8,7 @@
   @csrf
   <div class="form-group">
     <label for="categories">Категории</label>
-    <select class="form-control" type="multiple" name="categories[]" id="categories">
+    <select class="form-control" multiple name="categories[]" id="categories">
       @foreach ($categories as $category)
       <option value="{{ $category->id }}">{{ $category->title }}</option>
       @endforeach

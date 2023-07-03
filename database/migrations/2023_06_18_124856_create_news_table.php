@@ -17,7 +17,7 @@ return new class extends Migration
       $table->id();
       $table->string('title', 255);
       $table->string('author', 100)->default('Admin');
-      $table->string('image', 255)->nullable();
+      $table->string('image', 255)->default('https://via.placeholder.com/640x480.png/0000ee?text=et');
       $table->text('description')->nullable();
       $table->timestamps();
     });
