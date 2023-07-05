@@ -9,17 +9,4 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
   use AuthorizesRequests, ValidatesRequests;
-
-  public function getCategories()
-  {
-    $categories = [
-      'politics' => 'Политика',
-      'cars' => 'Автомобили',
-      'gadgets' => 'Гаджеты',
-      'programs' => 'Программы',
-      'films' => 'Фильмы'
-    ];
-
-    return $categories;
-  }
 }

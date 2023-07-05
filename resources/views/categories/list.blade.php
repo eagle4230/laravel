@@ -1,13 +1,17 @@
 @extends('layouts.main')
 @section('content')
 
-<h1>Категории новостей</h1>
-<hr /><br>
-@foreach ($categoriesList as $key => $categories)
 <div class="container">
-  <h2><a href=categories/{{ $key }}>{{ $categories }}</a></h2>
+  <h1>Категории новостей</h1>
+  <hr /><br>
+  <h2><a href=categories/all>Смотреть все новости</a></h2>
+  <br>
+  @foreach ($categoriesList as $categories)
+  <div>
+    <h2><a href=categories/{{ $categories->id }}>{{ $categories->title }}</a></h2>
+  </div>
+  <br>
+  @endforeach
 </div>
-<br>
-@endforeach
 
 @endsection

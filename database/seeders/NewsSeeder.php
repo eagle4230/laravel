@@ -28,7 +28,7 @@ class NewsSeeder extends Seeder
         'author' => fake()->userName(),
         'image' => fake()->imageUrl(),
         'status' => NewsStatus::ACTIVE->value,
-        'description' => fake()->text(100),
+        'description' => fake()->realText(rand(100, 1000)),
         'created_at' => now(),
         'updated_at' => now(),
       ];

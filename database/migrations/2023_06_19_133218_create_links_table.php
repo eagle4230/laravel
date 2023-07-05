@@ -25,6 +25,7 @@ return new class extends Migration
         ->cascadeOnDelete();
 
       $table->foreignId('source_id')
+        ->default('2')
         ->references('id')
         ->on('sources')
         ->cascadeOnDelete();

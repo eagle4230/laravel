@@ -15,6 +15,7 @@
   <table class="table table-bordered">
     <tr>
       <th>#ID</th>
+      <th>Category</th>
       <th>Title</th>
       <th>Author</th>
       <th>Status</th>
@@ -24,6 +25,7 @@
     @foreach ($newsList as $news)
     <tr>
       <td>{{ $news->id }}</td>
+      <td>{{ $news->categories->map(fn($item) => $item->title)->implode(", ") }}</td>
       <td>{{ $news->title }}</td>
       <td>{{ $news->author }}</td>
       <td>{{ $news->status }}</td>

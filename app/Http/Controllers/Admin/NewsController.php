@@ -6,17 +6,31 @@ use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use App\Models\News;
+use App\Queries\CategoriesQueryBuilder;
+use App\Queries\NewsQueryBuilder;
+use App\Queries\QueryBuilder;
 
 class NewsController extends Controller
 {
+  protected QueryBuilder $categoriesQueryBuilder;
+  protected QueryBuilder $newsQueryBuilder;
+
+  public function __construct(
+    CategoriesQueryBuilder $categoriesQueryBuilder,
+    NewsQueryBuilder $newsQueryBuilder
+  ) {
+    $this->categoriesQueryBuilder = $categoriesQueryBuilder;
+    $this->newsQueryBuilder = $newsQueryBuilder;
+  }
+
+
   /**
    * Display a listing of the resource.
    */
   public function index(): View
   {
-    $model = app(News::class);
     return view('admin.news.index', [
-      'newsList' => $model->getNews(),
+      'newsList' => $this->newsQueryBuilder->getAll()
     ]);
   }
 
@@ -25,7 +39,9 @@ class NewsController extends Controller
    */
   public function create(): View
   {
-    return view('admin.news.create');
+    return view('admin.news.create', [
+      'categories' => $this->categoriesQueryBuilder->getAll(),
+    ]);
   }
 
   /**
@@ -34,12 +50,28 @@ class NewsController extends Controller
   public function store(Request $request)
   {
     //dd($request->all());
-    return response()->json($request->only([
+
+    $categories = $request->input('categories');
+
+    $news = $request->only([
       'title',
       'author',
       'status',
       'description'
-    ]));
+    ]);
+
+    $news = News::create($news);
+    //dd($news);
+
+    if ($news !== false) {
+      if ($categories !== null) {
+        $news->categories()->attach($categories);
+
+        return redirect()->route('admin.news.index')->with('success', 'News has been create');
+      }
+    }
+
+    return back()->with('error', 'News has not been create');
   }
 
   /**

@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Category;
+use Illuminate\Contracts\View\View;
 
 class CategoriesNewsController extends Controller
 {
   // list all Categories
-  public function list()
+  public function list(): View
   {
-    $categories = $this->getCategories();
-    return view('categories.list', [
-      'categoriesList' => $categories
-    ]);
+    return view('categories.list', ['categoriesList' => Category::all()]);
   }
 }
