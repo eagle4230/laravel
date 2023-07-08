@@ -19,4 +19,9 @@ class NewsQueryBuilder extends QueryBuilder
   {
     return $this->getModel()->with('categories')->get();
   }
+
+  public function getActiveNews(): Collection
+  {
+    return $this->getModel()->active()->get();
+  }
 }
