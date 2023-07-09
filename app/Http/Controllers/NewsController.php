@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\News;
-use App\Models\Link;
 use App\Queries\NewsQueryBuilder;
 use Illuminate\Contracts\View\View;
 
@@ -25,24 +24,14 @@ final class NewsController extends Controller
   /* извлечение новостей по категории */
   public function indexByCategory(int $category): View
   {
-    //$news = Link::with('category_id', $category)->get();
-    //dd($news);
-
-    $modelLink = app(Link::class)->getNumNewsByCategory($category);
-    $numNews = $modelLink->pluck('news_id')->unique()->all();   //array
-
-    $newsByCategory = app(News::class)->whereIn('id', $numNews)->get();
-
-    return view('news.indexByCategory', [
-      'newsByCategory' => $newsByCategory,
-      'urlCategory' => $category,
-    ]);
+    $selectCategory = Category::find($category);
+    return view('news.indexByCategory', ['category' => $selectCategory, 'news' => $selectCategory->news]);
   }
 
   /* извлечь новость по ID */
   public function show(string $category, int $id): View
   {
     $news = News::findOrFail($id);
-    return view('news.show', ['news' => $news, 'urlCategory' => $category,]);
+    return view('news.show', ['news' => $news, 'urlCategory' => $category]);
   }
 }
