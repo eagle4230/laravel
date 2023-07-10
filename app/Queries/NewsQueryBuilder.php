@@ -7,6 +7,7 @@ namespace App\Queries;
 use App\Models\News;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class NewsQueryBuilder extends QueryBuilder
 {
@@ -16,9 +17,9 @@ class NewsQueryBuilder extends QueryBuilder
   }
 
   /* ВЫВОД ВСЕХ НОВОСТЕЙ */
-  public function getAll(): Collection
+  public function getAll(): LengthAwarePaginator
   {
-    return $this->getModel()->with('categories')->get();
+    return $this->getModel()->with('categories')->paginate(10);
   }
 
   public function getActiveNews(): Collection
