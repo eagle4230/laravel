@@ -10,13 +10,11 @@ use Illuminate\Http\Request;
 
 class CategoryNewsController extends Controller
 {
-  /**
-   * Display a listing of the resource.
-   */
+  /* ВЫВОД ВСЕХ КАТЕГОРИЙ */
   public function index(CategoriesQueryBuilder $categoriesQueryBuilder): View
   {
     return view('admin.categories.index', [
-      'categoriesList' => $categoriesQueryBuilder->getAll()
+      'categoryList' => $categoriesQueryBuilder->getAll()
     ]);
   }
 

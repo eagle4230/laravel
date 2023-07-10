@@ -20,7 +20,7 @@
       <th>Date created</th>
       <th>Actions</th>
     </tr>
-    @foreach ($categoriesList as $category)
+    @foreach ($categoryList as $category)
     <tr>
       <td>{{ $category->id }}</td>
       <td>{{ $category->title }}</td>

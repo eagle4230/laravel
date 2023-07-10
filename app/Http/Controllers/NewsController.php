@@ -9,26 +9,26 @@ use Illuminate\Contracts\View\View;
 
 final class NewsController extends Controller
 {
-  /* извлечь все новости */
+  /* ИЗВЛЕЧЬ ВСЕ НОВОСТИ */
   public function index(NewsQueryBuilder $newsQueryBuilder): View
   {
     return view('news.index', ['newsList' => News::all()]);
   }
 
-  /* извлечь все новости со статусом "активные" */
+  /* ИЗВЛЕЧЬ ВСЕ НОВОСТИ СО СТАТУСОМ "АКТИВНЫЕ" */
   public function indexActive(NewsQueryBuilder $newsQueryBuilder): View
   {
     return view('news.index', ['newsList' => $newsQueryBuilder->getActiveNews()]);
   }
 
-  /* извлечение новостей по категории */
+  /* ИЗВЛЕЧЕНИЕ НОВОСТЕЙ ПО КАТЕГОРИИ */
   public function indexByCategory(int $category): View
   {
-    $selectCategory = Category::find($category);
+    $selectCategory = Category::findOrFail($category);
     return view('news.indexByCategory', ['category' => $selectCategory, 'news' => $selectCategory->news]);
   }
 
-  /* извлечь новость по ID */
+  /* ИЗВЛЕЧЬ НОВОСТЬ ПО ID */
   public function show(string $category, int $id): View
   {
     $news = News::findOrFail($id);
