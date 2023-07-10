@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\News\Store;
+use App\Http\Requests\News\Update;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use App\Models\News;
@@ -43,27 +45,14 @@ class NewsController extends Controller
   }
 
   /* СОХРАНЕНИЕ НОВОСТИ */
-  public function store(Request $request): RedirectResponse
+  public function store(Store $request): RedirectResponse
   {
-    //dd($request->all());
+    $news = News::create($request->validated());
 
-    $categories = $request->input('categories');
-
-    $news = $request->only([
-      'title',
-      'author',
-      'status',
-      'description'
-    ]);
-
-    $news = News::create($news);
-
-    if ($news !== false) {
-      if ($categories !== null) {
-        $news->categories()->attach($categories); // СОХРАНЯЕМ
-        // ПРИ УСПЕШНОМ СОХРАНЕНИИ ВЫВОДИМ СООБЩЕНИЕ
-        return redirect()->route('admin.news.index')->with('success', 'News has been create');
-      }
+    if ($news) {
+      $news->categories()->attach($request->getCategories()); // СОХРАНЯЕМ
+      // ПРИ УСПЕШНОМ СОХРАНЕНИИ ВЫВОДИМ СООБЩЕНИЕ
+      return redirect()->route('admin.news.index')->with('success', 'News has been create');
     }
     // ЕСЛИ НЕ СОХРАНИЛАСЬ, ВЫВОДИМ СООБЩЕНИЕ
     return back()->with('error', 'News has not been create');
@@ -91,14 +80,12 @@ class NewsController extends Controller
   /**
    * Update the specified resource in storage.
    */
-  public function update(Request $request, News $news): RedirectResponse
+  public function update(Update $request, News $news): RedirectResponse
   {
-    $categories = $request->input('categories');
-
-    $news = $news->fill($request->only(['title', 'author', 'status', 'description']));
+    $news = $news->fill($request->validated());
 
     if ($news->save()) {
-      $news->categories()->sync($categories);
+      $news->categories()->sync($request->getCategories());
       return redirect()->route('admin.news.index')->with('success', 'News has been update');
     }
 
