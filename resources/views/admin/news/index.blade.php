@@ -30,9 +30,12 @@
       <td>{{ $news->author }}</td>
       <td>{{ $news->status }}</td>
       <td>{{ $news->created_at }}</td>
-      <td><a href="#">Edit</a>&nbsp; <a href="#" style="color:red">Delete</a></td>
+      <td><a href="{{ route('admin.news.edit', ['news' => $news]) }}">Edit</a>&nbsp; <a href="#"
+          style="color:red">Delete</a>
+      </td>
     </tr>
     @endforeach
   </table>
+  {{ $newsList->links() }}
 </div>
 @endsection

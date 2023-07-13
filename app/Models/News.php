@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Enums\NewsStatus;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\DB;
 
 class News extends Model
 {
@@ -23,20 +23,25 @@ class News extends Model
     'description',
   ];
 
-  /* Relations */
+  /* Relations - many to many*/
   public function categories(): BelongsToMany
   {
     return $this->belongsToMany(Category::class, 'links', 'news_id', 'category_id');
   }
 
+  /* Scopes's */
+  public function scopeActive(Builder $query): void
+  {
+    $query->where('status', NewsStatus::ACTIVE->value);
+  }
 
-  // public function getNews(): Collection
-  // {
-  //   return DB::table($this->table)->get();
-  // }
+  public function scopeDraft(Builder $query): void
+  {
+    $query->where('status', NewsStatus::DRAFT->value);
+  }
 
-  // public function getNewsById(int $id): mixed
-  // {
-  //   return DB::table($this->table)->find($id);
-  // }
+  public function scopeBlocked(Builder $query): void
+  {
+    $query->where('status', NewsStatus::BLOCKED->value);
+  }
 }
