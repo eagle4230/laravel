@@ -45,16 +45,15 @@ class NewsController extends Controller
   /* СОХРАНЕНИЕ НОВОСТИ */
   public function store(Store $request): RedirectResponse
   {
-    dd($request->all());
     $news = News::create($request->validated());
 
     if ($news) {
       $news->categories()->attach($request->getCategories()); // СОХРАНЯЕМ
       // ПРИ УСПЕШНОМ СОХРАНЕНИИ ВЫВОДИМ СООБЩЕНИЕ
-      return redirect()->route('admin.news.index')->with('success', 'News has been create');
+      return \redirect()->route('admin.news.index')->with('success', 'News has been create');
     }
     // ЕСЛИ НЕ СОХРАНИЛАСЬ, ВЫВОДИМ СООБЩЕНИЕ
-    return back()->with('error', 'News has not been create');
+    return \back()->with('error', 'News has not been create');
   }
 
   /**
