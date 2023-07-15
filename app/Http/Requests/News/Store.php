@@ -27,7 +27,7 @@ class Store extends FormRequest
   {
     return [
       'categories' => ['required', 'array'],
-      'categories.*' => ['exists:categories.id'],
+      'categories.*' => ['exists:categories,id'],
       'title' => ['required', 'string', 'min:7', 'max:150'],
       'author' => ['nullable', 'string', 'min:2', 'max:50'],
       'image' => ['sometimes'],

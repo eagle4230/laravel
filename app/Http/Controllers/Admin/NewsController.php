@@ -6,13 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\News\Store;
 use App\Http\Requests\News\Update;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
 use App\Models\News;
 use App\Queries\CategoriesQueryBuilder;
 use App\Queries\NewsQueryBuilder;
 use App\Queries\QueryBuilder;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Redirect;
 
 class NewsController extends Controller
 {
@@ -47,6 +45,7 @@ class NewsController extends Controller
   /* СОХРАНЕНИЕ НОВОСТИ */
   public function store(Store $request): RedirectResponse
   {
+    dd($request->all());
     $news = News::create($request->validated());
 
     if ($news) {
