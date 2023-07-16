@@ -40,4 +40,18 @@ class Update extends FormRequest
   {
     return $this->validated('categories');
   }
+
+  public function messages(): array
+  {
+    return [
+      'required' => 'Нужно заполнить поле :attribute',
+    ];
+  }
+
+  public function attributes(): array
+  {
+    return [
+      'title' => 'наименование',
+    ];
+  }
 }
