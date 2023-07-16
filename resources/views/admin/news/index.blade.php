@@ -36,6 +36,6 @@
     </tr>
     @endforeach
   </table>
-  {{ $newsList->links() }}
+  <p>{{ $newsList->links() }}</p>
 </div>
 @endsection

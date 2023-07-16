@@ -14,6 +14,6 @@
     <br>
     @endforeach
   </div>
-  {{ $categoriesList->links() }}
+  <p>{{ $categoriesList->links() }}</p>
 </div>
 @endsection

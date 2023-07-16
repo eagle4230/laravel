@@ -30,7 +30,7 @@
     </tr>
     @endforeach
   </table>
-  {{ $categoryList->links() }}
+  <p>{{ $categoryList->links() }}</p>
 </div>
 </div>
 
