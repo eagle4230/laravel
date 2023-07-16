@@ -10,7 +10,10 @@ use App\Models\News;
 use App\Queries\CategoriesQueryBuilder;
 use App\Queries\NewsQueryBuilder;
 use App\Queries\QueryBuilder;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class NewsController extends Controller
 {
@@ -93,8 +96,16 @@ class NewsController extends Controller
   /**
    * Remove the specified resource from storage.
    */
-  public function destroy(News $news)
+  public function destroy(News $news): JsonResponse
   {
-    //
+    try {
+      $news->delete();
+
+      return response()->json('ok');
+    } catch (\Throwable $exception) {
+      Log::error($exception->getMessage(), $exception->getTrace());
+
+      return response()->json('error', 400);
+    }
   }
 }
