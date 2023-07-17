@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoriesNewsController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\WelcomePageController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
