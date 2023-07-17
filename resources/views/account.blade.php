@@ -16,7 +16,9 @@
 
           <h3>Привет, {{ Auth::user()->name }}</h3>
           <br>
+          @if(Auth::user()->isAdmin)
           <p><a href="{{ route('admin.index') }}" style="color:red;">В админку</a></p>
+          @endif
         </div>
       </div>
     </div>

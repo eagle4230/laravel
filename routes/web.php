@@ -40,15 +40,21 @@ Route::get('/categories/{category}/{id}', [NewsController::class, 'show'])
   ->where('category', '\d+')
   ->where('id', '\d+');
 
-Route::group(['prefix' => 'account', 'middleware' => 'auth'], static function () {
-  Route::get('/', AccountController::class)->name('account');
-});
+Route::group(['middleware' => 'auth'], static function () {
+  Route::group(['prefix' => 'account'], static function () {
+    Route::get('/', AccountController::class)->name('account');
+  });
 
-//Admin --group routes
-Route::group(['prefix' => 'admin', 'as' => 'admin.'], static function () {
-  Route::get('/', AdminController::class)->name('index');
-  Route::resource('categories', AdminCategoryNewsController::class);
-  Route::resource('news', AdminNewsController::class);
+  //Admin --group routes
+  Route::group([
+    'prefix' => 'admin',
+    'as' => 'admin.',
+    'middleware' => 'check.admin',
+  ], static function () {
+    Route::get('/', AdminController::class)->name('index');
+    Route::resource('categories', AdminCategoryNewsController::class);
+    Route::resource('news', AdminNewsController::class);
+  });
 });
 
 Auth::routes();
