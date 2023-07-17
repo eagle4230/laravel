@@ -44,3 +44,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], static function () {
   Route::resource('categories', AdminCategoryNewsController::class);
   Route::resource('news', AdminNewsController::class);
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
