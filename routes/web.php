@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\Admin\CategoryNewsController as AdminCategoryNewsController;
 use App\Http\Controllers\Admin\IndexController as AdminController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
@@ -37,6 +38,10 @@ Route::get('/categories/{category}', [NewsController::class, 'indexByCategory'])
 Route::get('/categories/{category}/{id}', [NewsController::class, 'show'])
   ->where('category', '\d+')
   ->where('id', '\d+');
+
+Route::group(['prefix' => 'account', 'middleware' => 'auth'], static function () {
+  Route::get('/', AccountController::class)->name('account');
+});
 
 //Admin --group routes
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], static function () {
