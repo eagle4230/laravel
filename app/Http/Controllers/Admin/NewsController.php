@@ -6,13 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\News\Store;
 use App\Http\Requests\News\Update;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
 use App\Models\News;
 use App\Queries\CategoriesQueryBuilder;
 use App\Queries\NewsQueryBuilder;
 use App\Queries\QueryBuilder;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Redirect;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class NewsController extends Controller
 {
@@ -52,10 +53,10 @@ class NewsController extends Controller
     if ($news) {
       $news->categories()->attach($request->getCategories()); // СОХРАНЯЕМ
       // ПРИ УСПЕШНОМ СОХРАНЕНИИ ВЫВОДИМ СООБЩЕНИЕ
-      return redirect()->route('admin.news.index')->with('success', 'News has been create');
+      return \redirect()->route('admin.news.index')->with('success', __('News has been create'));
     }
     // ЕСЛИ НЕ СОХРАНИЛАСЬ, ВЫВОДИМ СООБЩЕНИЕ
-    return back()->with('error', 'News has not been create');
+    return \back()->with('error', __('News has not been create'));
   }
 
   /**
@@ -86,17 +87,25 @@ class NewsController extends Controller
 
     if ($news->save()) {
       $news->categories()->sync($request->getCategories());
-      return redirect()->route('admin.news.index')->with('success', 'News has been update');
+      return redirect()->route('admin.news.index')->with('success', __('News has been updated'));
     }
 
-    return back()->with('error', 'News has not been update');
+    return back()->with('error', __('News has not been updated'));
   }
 
   /**
    * Remove the specified resource from storage.
    */
-  public function destroy(News $news)
+  public function destroy(News $news): JsonResponse
   {
-    //
+    try {
+      $news->delete();
+
+      return response()->json('ok');
+    } catch (\Throwable $exception) {
+      Log::error($exception->getMessage(), $exception->getTrace());
+
+      return response()->json('error', 400);
+    }
   }
 }

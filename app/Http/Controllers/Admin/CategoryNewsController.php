@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
 use App\Queries\CategoriesQueryBuilder;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;

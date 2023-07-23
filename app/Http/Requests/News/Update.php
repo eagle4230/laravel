@@ -27,7 +27,7 @@ class Update extends FormRequest
   {
     return [
       'categories' => ['required', 'array'],
-      'categories.*' => ['exists:categories.id'],
+      'categories.*' => ['exists:categories,id'],
       'title' => ['required', 'string', 'min:7', 'max:150'],
       'author' => ['nullable', 'string', 'min:2', 'max:50'],
       'image' => ['sometimes'],
@@ -39,5 +39,19 @@ class Update extends FormRequest
   public function getCategories(): array
   {
     return $this->validated('categories');
+  }
+
+  public function messages(): array
+  {
+    return [
+      'required' => 'Нужно заполнить поле :attribute',
+    ];
+  }
+
+  public function attributes(): array
+  {
+    return [
+      'title' => 'наименование',
+    ];
   }
 }

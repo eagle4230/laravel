@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Queries;
 
 use App\Models\Category;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
 
 class CategoriesQueryBuilder extends QueryBuilder
 {
@@ -15,8 +15,8 @@ class CategoriesQueryBuilder extends QueryBuilder
     return Category::query();
   }
 
-  public function getAll(): Collection
+  public function getAll(): LengthAwarePaginator
   {
-    return $this->getModel()->get();
+    return $this->getModel()->paginate(6);
   }
 }

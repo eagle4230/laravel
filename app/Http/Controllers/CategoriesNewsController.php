@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use App\Queries\CategoriesQueryBuilder;
 use Illuminate\Contracts\View\View;
 
 class CategoriesNewsController extends Controller
 {
   // list all Categories
-  public function list(): View
+  public function list(CategoriesQueryBuilder $categoriesQueryBuilder): View
   {
-    return view('categories.list', ['categoriesList' => Category::all()]);
+    return view('categories.list', ['categoriesList' => $categoriesQueryBuilder->getAll()]);
   }
 }

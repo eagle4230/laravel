@@ -12,7 +12,7 @@ final class NewsController extends Controller
   /* ИЗВЛЕЧЬ ВСЕ НОВОСТИ */
   public function index(NewsQueryBuilder $newsQueryBuilder): View
   {
-    return view('news.index', ['newsList' => News::all()]);
+    return view('news.index', ['newsList' => $newsQueryBuilder->getAll()]);
   }
 
   /* ИЗВЛЕЧЬ ВСЕ НОВОСТИ СО СТАТУСОМ "АКТИВНЫЕ" */

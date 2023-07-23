@@ -19,7 +19,7 @@ class NewsQueryBuilder extends QueryBuilder
   /* ВЫВОД ВСЕХ НОВОСТЕЙ */
   public function getAll(): LengthAwarePaginator
   {
-    return $this->getModel()->with('categories')->paginate(10);
+    return $this->getModel()->with('categories')->paginate(9);
   }
 
   public function getActiveNews(): Collection
