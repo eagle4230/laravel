@@ -9,7 +9,10 @@
   "Password": "Пароль",
   "Confirm Password": "Повторите пароль",
   "Login": "Вход",
+  "Logout": "Выход",
   "Remember Me": "Запомнить меня",
   "Forgot Your Password?": "Забыли пароль?",
+  "Reset Password": "Сброс пароля",
+  "Send Password Reset Link": "Отправить ссылку для сброса пароля",
   "Account": "Панель управления"
 }

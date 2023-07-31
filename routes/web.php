@@ -4,6 +4,7 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\Admin\CategoryNewsController as AdminCategoryNewsController;
 use App\Http\Controllers\Admin\IndexController as AdminController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
+use App\Http\Controllers\Admin\ParserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoriesNewsController;
 use App\Http\Controllers\NewsController;
@@ -52,6 +53,7 @@ Route::group(['middleware' => 'auth'], static function () {
     'middleware' => 'check.admin',
   ], static function () {
     Route::get('/', AdminController::class)->name('index');
+    Route::get('/parser', ParserController::class)->name('parser');
     Route::resource('categories', AdminCategoryNewsController::class);
     Route::resource('news', AdminNewsController::class);
   });
