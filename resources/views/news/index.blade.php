@@ -9,7 +9,7 @@
 
     <div class="col">
       <div class="card shadow-sm">
-        <img src="{{ $news->image }}" />
+        <img src="{{ Storage::disk('public')->url($news->image) }}" />
         <div class="card-body">
           <p>
             <strong>

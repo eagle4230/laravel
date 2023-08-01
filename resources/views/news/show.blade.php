@@ -6,7 +6,6 @@
   <h2> {{ $news->title }} </h2>
   <h4> {{ $news->author }} ({{ date('d-m-Y H:i', strtotime($news->created_at)) }}) </h4>
   <hr>
-  <div>{{$news->image}}</div>
   <p> {!! $news->description !!} </p>
 </div>
 
