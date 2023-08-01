@@ -64,3 +64,12 @@
   <button type="submit" class="btn btn-success">Сохранить</button>
 </form>
 @endsection
+@push('js')
+<script>
+  ClassicEditor
+      .create( document.querySelector( '#description' ) )
+      .catch( error => {
+          console.error( error );
+      } );
+</script>
+@endpush
