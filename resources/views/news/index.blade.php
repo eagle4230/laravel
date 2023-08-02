@@ -9,7 +9,11 @@
 
     <div class="col">
       <div class="card shadow-sm">
+        @if (Storage::disk('public')->exists($news->image))
         <img src="{{ Storage::disk('public')->url($news->image) }}" />
+        @else
+        <img src="{{ $news->image }}" />
+        @endif
         <div class="card-body">
           <p>
             <strong>
