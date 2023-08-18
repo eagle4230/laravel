@@ -36,6 +36,7 @@
   </div>
   <div class="form-group">
     <label for="image">Изображение</label>
+    <img src="{{ Storage::disk('public')->url($news->image) }}" />
     <input type="file" name="image" id="image" class="form-control" />
   </div>
   <div class="form-group">
@@ -55,7 +56,7 @@
   </div>
   <div class="form-group">
     <label for="description">Описание</label>
-    <textarea name="description" class="form-control" id="description" cols="30" rows="5">
+    <textarea name="description" class="form-control" id="description">
       {!! $news->description !!}
     </textarea>
     @error('description') <strong style="color: red;">{{ $message }}</strong> @enderror
@@ -63,4 +64,18 @@
   <br>
   <button type="submit" class="btn btn-success">Сохранить</button>
 </form>
+
+<script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
+<script>
+  var options = {
+    filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+    filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+    filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+    filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+  };
+</script>
+<script>
+  CKEDITOR.replace('description', options);
+</script>
+
 @endsection
